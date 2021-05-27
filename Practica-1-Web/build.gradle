@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+run{
+    standardInput = System.in
+}
+
+group 'edu.pucmm.eict'
+version '1.0-SNAPSHOT'
+
+mainClassName = 'edu.pucmm.eict.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    //https://jsoup.org/ Libreria Jsoup para parser del doc HTML
+    implementation 'org.jsoup:jsoup:1.13.1'
+    //url validator
+    implementation 'commons-validator:commons-validator:1.7'
+}
+
+test {
+    useJUnitPlatform()
+}
