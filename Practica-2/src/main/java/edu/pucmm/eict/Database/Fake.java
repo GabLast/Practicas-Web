@@ -25,13 +25,12 @@ public class Fake {
 
         //Productos iniciales
         Producto a = new Producto(productos.size()+1, "Manzana", new BigDecimal(50.50));
-        Producto b = new Producto(productos.size()+1, "Pera", new BigDecimal(300.00));
-        Producto c = new Producto(productos.size()+1, "Laptop", new BigDecimal(10099.99));
-        Producto d = new Producto(productos.size()+1, "Corsair K70 RGB RapidFire", new BigDecimal(4999.99));
-
         productos.add(a);
+        Producto b = new Producto(productos.size()+1, "Pera", new BigDecimal(300.00));
         productos.add(b);
+        Producto c = new Producto(productos.size()+1, "Laptop", new BigDecimal(10099.99));
         productos.add(c);
+        Producto d = new Producto(productos.size()+1, "Corsair K70 RGB RapidFire", new BigDecimal(4999.99));
         productos.add(d);
 
         //Ventas Realizadas
@@ -64,8 +63,20 @@ public class Fake {
         this.productos = productos;
     }
 
+    public List<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(List<Venta> ventas) {
+        this.ventas = ventas;
+    }
+
     public Producto getProductoByID(int id) {
         return productos.stream().filter(pro -> pro.getId() == id).findFirst().orElse(null);
+    }
+
+    public Usuario getUserByUsername(String username) {
+        return usuarios.stream().filter(pro -> pro.getUsername().equalsIgnoreCase(username)).findFirst().orElse(null);
     }
 
     //Metodos de la tienda

@@ -1,6 +1,20 @@
+edu/pucmm/eict/Models/Producto.java
+ edu.pucmm.eict.Models.Producto
+edu/pucmm/eict/Models/Usuario.java
+ edu.pucmm.eict.Models.Usuario
+edu/pucmm/eict/Models/CarritoCompras.java
+ edu.pucmm.eict.Models.CarritoCompras
+edu/pucmm/eict/Models/Venta.java
+ edu.pucmm.eict.Models.Venta
+edu/pucmm/eict/Models/ProductoCompra.java
+ edu.pucmm.eict.Models.ProductoCompra
+edu/pucmm/eict/Utils/ProductoException.java
+ edu.pucmm.eict.Utils.ProductoException
 edu/pucmm/eict/Database/Fake.java
  edu.pucmm.eict.Database.Fake
 edu/pucmm/eict/Controllers/UserController.java
  edu.pucmm.eict.Controllers.UserController
 edu/pucmm/eict/Main.java
  edu.pucmm.eict.Main
+edu/pucmm/eict/Controllers/StoreController.java
+ edu.pucmm.eict.Controllers.StoreController

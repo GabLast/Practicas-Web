@@ -14,18 +14,10 @@ public class UserController {
     Javalin app;
     public UserController(Javalin app){
         this.app = app;
-        registrandoPlantillas();
+;
     }
 
-    private void registrandoPlantillas(){
-        JavalinRenderer.register(JavalinFreemarker.INSTANCE, ".ftl");
-    }
-
-    public void routes() {
-
-        app.error(404, ctx -> {
-            ctx.redirect("/404.html");
-        });
+    public void aplicarRutas() {
 
         app.routes(() -> {
             path("/user", () -> {

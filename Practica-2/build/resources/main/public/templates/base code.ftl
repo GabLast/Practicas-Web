@@ -1,9 +1,9 @@
 <#include "BaseTemplate.ftl">
 <#macro page_head>
-    <title>Productos</title>
+    <title></title>
 </#macro>
 
 <#macro page_body>
-    <h1> Welcome user</h1>
+<#--  body here  -->
 </#macro>
 <@display_page/>

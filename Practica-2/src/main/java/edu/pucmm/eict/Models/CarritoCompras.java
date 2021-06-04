@@ -5,10 +5,11 @@ import java.util.List;
 
 public class CarritoCompras {
     private long id;
-    private List<ProductoCompra> miCarrito = new ArrayList<>();
+    private List<ProductoCompra> miCarrito;
 
-    public CarritoCompras(long id) {
+    public CarritoCompras(long id, List<ProductoCompra> miCarrito) {
         this.id = id;
+        this.miCarrito = miCarrito;
     }
 
     public long getId() {
@@ -33,5 +34,14 @@ public class CarritoCompras {
     }
     public boolean removerProducto(ProductoCompra producto) {
         return miCarrito.remove(producto);
+    }
+
+    public Integer contarProductos() {
+        int x = 0;
+        for (ProductoCompra p: miCarrito) {
+            x += p.getCantidad();
+        }
+
+        return x;
     }
 }
