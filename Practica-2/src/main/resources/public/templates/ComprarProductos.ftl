@@ -5,17 +5,16 @@
 
 <#macro page_body>
 <#--  body here  -->
-<body>
-    <div class="container">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col">
-                        <h2>Listado de productos disponibles</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="table-responsive">
+<body style="background: whitesmoke">
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col">
+      <h2 style="padding: 2rem; width: 100%"><span style="background: #343a40; color:#fff">Productos Disponibles</span></h2>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="table-responsive" style="height: 300px">
                 <table class="table table-striped table-bordered">
                     <thead class="thead-dark text-center">
                     <tr>
@@ -32,7 +31,7 @@
                             <form method="post" action="/productos/listar/addtocart">
                                 <td>${p.id}<input hidden value ="${p.id}" name="idProduct"></td>
                                 <td>${p.nombre}</td>
-                                <td>${p.precio}</td>
+                                <td>RD$${p.precio}</td>
                                 <td>
                                     <input type="number" class="form-control form-control-sm" id="cantidad" name="cantidad" min="1" value="1" />
                                 </td>
@@ -45,9 +44,20 @@
                     </tbody>
                 </table>
             </div>
-
-        </div>
     </div>
+  </div>
+  <div class="row align-items-end">
+    <div class="col">
+
+    </div>
+    <div class="col">
+
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>
 </body>
 </#macro>
 <@display_page/>

@@ -2,3 +2,10 @@
     background: #080808 !important;
     color: rgb(255, 255, 255) !important;
 }
+
+.table-title
+{
+    width: 100% !important;
+    background: #5c636a !important;
+    padding: 25px !important;
+}

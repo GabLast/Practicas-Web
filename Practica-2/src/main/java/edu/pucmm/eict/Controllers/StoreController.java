@@ -102,22 +102,21 @@ public class StoreController {
                     int id = ctx.formParam("idProduct", Integer.class).get();
 
                     Producto producto = database.getProductoByID(id);
-                    if (producto != null)
+                    if (producto == null)
                     {
-                        int cantidad = Integer.parseInt(ctx.formParam("cantidad"));
-                        ProductoCompra pro = new ProductoCompra(producto.getId(), producto.getNombre(), producto.getPrecio(), cantidad);
-                        micarrito.agregarProducto(pro);
-                        ctx.sessionAttribute("micarrito", micarrito);
+                        ctx.redirect("/404.html");
+                    }
+                    int cantidad = Integer.parseInt(ctx.formParam("cantidad"));
+                    ProductoCompra pro = new ProductoCompra(producto.getId(), producto.getNombre(), producto.getPrecio(), cantidad);
+                    micarrito.agregarProducto(pro);
+                    ctx.sessionAttribute("micarrito", micarrito);
 
-//                    for (ProductoCompra p: micarrito.getMiCarrito())
-//                    {
-//                        System.out.println(p.getNombre());
-//                    }
-
-                        ctx.redirect("/productos/listar");
+                    for (ProductoCompra p: micarrito.getMiCarrito())
+                    {
+                        System.out.println(p.getNombre());
                     }
 
-                    ctx.html("/404.html");
+                    ctx.redirect("/productos/listar");
                 });
             });
         });
