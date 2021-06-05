@@ -1,5 +1,7 @@
 package edu.pucmm.eict.Models;
 
+import edu.pucmm.eict.Database.Fake;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,11 @@ public class CarritoCompras {
         return miCarrito.remove(producto);
     }
 
+    public boolean removerProductoByINDEX(int index) {
+        ProductoCompra producto = miCarrito.remove(index);
+        return (producto != null);
+    }
+
     public Integer contarProductos() {
         int x = 0;
         for (ProductoCompra p: miCarrito) {
@@ -43,5 +50,9 @@ public class CarritoCompras {
         }
 
         return x;
+    }
+
+    public void limpiarCarrito() {
+        miCarrito = new ArrayList<>();
     }
 }

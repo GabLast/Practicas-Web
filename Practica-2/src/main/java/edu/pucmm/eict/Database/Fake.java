@@ -37,7 +37,7 @@ public class Fake {
         List<ProductoCompra> ordenCompra = new ArrayList<>();
         ordenCompra.add(new ProductoCompra(a.getId(), a.getNombre(), a.getPrecio(), 10));
         ordenCompra.add(new ProductoCompra(b.getId(), b.getNombre(), b.getPrecio(), 5));
-        ventas.add(new Venta(ventas.size()+1, admin, ordenCompra, new Date()));
+        ventas.add(new Venta(ventas.size()+1, admin.getNombre(), ordenCompra, new Date()));
     }
 
     public static Fake getInstancia(){
@@ -103,5 +103,9 @@ public class Fake {
     public boolean removerProducto(Producto producto) {
 
         return productos.remove(producto);
+    }
+
+    public boolean agregarVenta(Venta venta) {
+        return ventas.add(venta);
     }
 }

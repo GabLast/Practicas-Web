@@ -5,19 +5,19 @@ import java.util.Date;
 import java.util.List;
 
 public class Venta {
-    private int id;
-    private Usuario cliente;
+    private long id;
+    private String cliente;
     private List<ProductoCompra> ordenCompra;
     private Date fechaCompra;
 
-    public Venta(int id, Usuario cliente, List<ProductoCompra> ordenCompra, Date fechaCompra) {
+    public Venta(long id, String cliente, List<ProductoCompra> ordenCompra, Date fechaCompra) {
         this.id = id;
         this.cliente = cliente;
         this.ordenCompra = ordenCompra;
         this.fechaCompra = fechaCompra;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -25,11 +25,11 @@ public class Venta {
         this.id = id;
     }
 
-    public Usuario getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
-    public void setCliente(Usuario cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
 

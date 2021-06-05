@@ -9,7 +9,7 @@
 <div class="container">
   <div class="row align-items-start">
     <div class="col">
-      <h2 style="padding: 2rem; width: 100%"><span style="background: #343a40; color:#fff">Productos Disponibles</span></h2>
+      <h2 style="padding: 2rem"><span>Productos Disponibles</span></h2>
     </div>
   </div>
   <div class="row align-items-center">
@@ -28,15 +28,15 @@
                     <tbody class="text-center table-bordered">
                     <#list productos as p>
                         <tr>
-                            <form method="post" action="/productos/listar/addtocart">
+                            <form method="POST" action="/productos/listar/addtocart">
                                 <td>${p.id}<input hidden value ="${p.id}" name="idProduct"></td>
                                 <td>${p.nombre}</td>
                                 <td>RD$${p.precio}</td>
                                 <td>
-                                    <input type="number" class="form-control form-control-sm" id="cantidad" name="cantidad" min="1" value="1" />
+                                    <input type="number" class="form-control form-control-sm" name="cantidad" min="1" value="1" />
                                 </td>
                                 <td>
-                                    <button class="btn btn-success  btn-sm" type="submit"><span class="material-icons">add_circle</span></button>
+                                    <button class="btn btn-success btn-sm"  type="submit"><span class="material-icons">add_circle</span></button>
                                 </td>
                             </form>
                         </tr>
