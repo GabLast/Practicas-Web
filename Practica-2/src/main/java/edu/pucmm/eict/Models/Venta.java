@@ -7,13 +7,13 @@ import java.util.List;
 public class Venta {
     private long id;
     private String cliente;
-    private List<ProductoCompra> ordenCompra;
+    private List<ProductoCompra> productosComprados;
     private Date fechaCompra;
 
-    public Venta(long id, String cliente, List<ProductoCompra> ordenCompra, Date fechaCompra) {
+    public Venta(long id, String cliente, List<ProductoCompra> productosComprados, Date fechaCompra) {
         this.id = id;
         this.cliente = cliente;
-        this.ordenCompra = ordenCompra;
+        this.productosComprados = productosComprados;
         this.fechaCompra = fechaCompra;
     }
 
@@ -33,12 +33,12 @@ public class Venta {
         this.cliente = cliente;
     }
 
-    public List<ProductoCompra> getOrdenCompra() {
-        return ordenCompra;
+    public List<ProductoCompra> getproductosComprados() {
+        return productosComprados;
     }
 
-    public void setOrdenCompra(List<ProductoCompra> ordenCompra) {
-        this.ordenCompra = ordenCompra;
+    public void setproductosComprados(List<ProductoCompra> productosComprados) {
+        this.productosComprados = productosComprados;
     }
 
     public Date getFechaCompra() {

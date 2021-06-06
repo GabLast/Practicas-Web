@@ -29,9 +29,9 @@ public class Main {
             ctx.redirect("/404.html");
         });
 
-        app.exception(NumberFormatException.class, (exception, ctx) -> {
-            ctx.html("Ocurrió un error en la conversacion numerica: "+exception.getLocalizedMessage());
-        });
+//        app.exception(NumberFormatException.class, (exception, ctx) -> {
+//            ctx.html("Ocurrió un error en la conversacion numerica: "+exception.getLocalizedMessage());
+//        });
 
         new UserController(app).aplicarRutas();
         new StoreController(app).aplicarRutas();

@@ -1,10 +1,8 @@
 <#macro page_head>
-    <#--  <@common_page_head/>  -->
     <title>Carrito de Compras</title>
 </#macro>
 
 <#macro page_body>
-    <h1>Page body</h1>
 </#macro>
 
 <#macro display_page>
@@ -14,8 +12,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/Navigation-Clean.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/Navigation-Clean.css">
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/styles.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <@page_head/>
 </head>
@@ -32,23 +30,26 @@
                 <#if admin == true>
                     <ul class="navbar-nav ml-auto text-right">
                         <li class="nav-item"><a class="nav-link text-light" href="/productos/listar">Comprar</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">Ventas Realizadas</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">Administrar Productos</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="/historial/ventas">Ventas Realizadas</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="/gestion/productos">Administrar Productos</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/productos/comprar">Carrito (${cantidad})</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">Log out</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="/user/logout">Log out</a></li>
                     </ul>
                 <#else>
                     <ul class="navbar-nav ml-auto text-right">
                         <li class="nav-item"><a class="nav-link text-light" href="/productos/listar">Comprar</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/productos/comprar">Carrito (${cantidad})</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">Log in</a></li>
+                        <#if logged == true>
+                            <li class="nav-item"><a class="nav-link text-light" href="/user/logout">Log Out</a></li>
+                        <#else>
+                            <li class="nav-item"><a class="nav-link text-light" href="/user/login">Log In</a></li>
+                        </#if>
                     </ul>
                 </#if>
             </div>
         </div>
     </nav>
     <@page_body/>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
 </body>

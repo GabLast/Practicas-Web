@@ -1,5 +1,8 @@
-#sectionBG404 {
+.customColor {
     background: #080808 !important;
     color: rgb(255, 255, 255) !important;
 }
 
+body {
+    background: whitesmoke !important;
+}

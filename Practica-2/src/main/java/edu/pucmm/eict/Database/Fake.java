@@ -20,8 +20,9 @@ public class Fake {
     public Fake() {
         //Users
         Usuario admin = new Usuario("admin", "admin", "Administrador", "Admin");
+        Usuario yo = new Usuario("gab", "123", "Cliente", "Gabriel");
         usuarios.add(admin);
-        usuarios.add(new Usuario("gab", "123", "Cliente", "Gabriel"));
+        usuarios.add(yo);
 
         //Productos iniciales
         Producto a = new Producto(productos.size()+1, "Manzana", new BigDecimal(50.50));
@@ -38,6 +39,11 @@ public class Fake {
         ordenCompra.add(new ProductoCompra(a.getId(), a.getNombre(), a.getPrecio(), 10));
         ordenCompra.add(new ProductoCompra(b.getId(), b.getNombre(), b.getPrecio(), 5));
         ventas.add(new Venta(ventas.size()+1, admin.getNombre(), ordenCompra, new Date()));
+
+        List<ProductoCompra> ordenCompra2 = new ArrayList<>();
+        ordenCompra2.add(new ProductoCompra(d.getId(), d.getNombre(), d.getPrecio(), 11));
+        ordenCompra2.add(new ProductoCompra(c.getId(), c.getNombre(), c.getPrecio(), 9));
+        ventas.add(new Venta(ventas.size()+1, yo.getNombre(), ordenCompra2, new Date()));
     }
 
     public static Fake getInstancia(){
@@ -82,21 +88,21 @@ public class Fake {
     //Metodos de la tienda
 
     public Producto agregarProducto(Producto producto) {
-        if(getProductoByID(producto.getId()) != null) {
-            System.out.println("Este producto ya existe. Registre un producto nuevo.");
-            return null;
+        while (getProductoByID(producto.getId()) != null)
+        {
+            producto.setId(producto.getId()+1);
         }
         productos.add(producto);
         return producto;
     }
 
-    public Producto actualizarProducto(Producto producto) {
-        Producto tmp = getProductoByID(producto.getId());
+    public Producto actualizarProducto(int id, String nombre, BigDecimal precio) {
+        Producto tmp = getProductoByID(id);
         if(tmp == null) {
-            throw new ProductoException("El producto de ID [" + producto.getId() + "] no existe." );
+            return null;
         }
-        tmp.setNombre(producto.getNombre());
-        tmp.setPrecio(producto.getPrecio());
+        tmp.setNombre(nombre);
+        tmp.setPrecio(precio);
         return tmp;
     }
 
@@ -107,5 +113,21 @@ public class Fake {
 
     public boolean agregarVenta(Venta venta) {
         return ventas.add(venta);
+    }
+
+    public Usuario loginAuth(String username, String password){
+        Usuario user = getUserByUsername(username);
+        if (user == null)
+        {
+            return null;
+        }else {
+            if(!password.equals(user.getPassword()))
+            {
+                return null;
+            }
+            else{
+                return user;
+            }
+        }
     }
 }

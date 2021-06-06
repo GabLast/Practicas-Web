@@ -5,7 +5,7 @@
 
 <#macro page_body>
 <#--  body here  -->
-<body style="background: whitesmoke">
+<body>
 <div class="container">
   <div class="row align-items-start">
     <div class="col">
@@ -19,16 +19,17 @@
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
+                        <th scope="col">Producto</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody class="text-center table-bordered">
+                    <#if productos?size gt 0>
                     <#list productos as p>
                         <tr>
-                            <form method="POST" action="/productos/listar/addtocart">
+                            <form method="POST" action="/productos/listar/addtocart/">
                                 <td>${p.id}<input hidden value ="${p.id}" name="idProduct"></td>
                                 <td>${p.nombre}</td>
                                 <td>RD$${p.precio}</td>
@@ -41,6 +42,7 @@
                             </form>
                         </tr>
                     </#list>
+                    </#if>
                     </tbody>
                 </table>
             </div>
