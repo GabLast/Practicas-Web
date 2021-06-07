@@ -80,7 +80,7 @@
 <body>
 <div class="central-body">
     <h5>Usted no tiene permisos para acceder a este recurso</h5>
-    <a href="/productos/listar" class="btn btn-go-home btn-dark"><button>VOLVER AL INICIO</button></a>
+    <a href="/productos/listar"><button class="btn btn-dark btn-go-home">VOLVER AL INICIO</button></a>
 </div>
 </body>
 </#if>

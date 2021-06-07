@@ -107,6 +107,7 @@ public class StoreController {
                     {
                         ctx.redirect("/404.html");
                     }
+
                     int cantidad = Integer.parseInt(ctx.formParam("cantidad"));
                     ProductoCompra pro = new ProductoCompra(producto.getId(), producto.getNombre(), producto.getPrecio(), cantidad);
                     micarrito.agregarProducto(pro);
@@ -247,7 +248,7 @@ public class StoreController {
 
                     //int id = Integer.parseInt(ctx.pathParam("id"));
                     Producto produ = database.getProductoByID(ctx.pathParam("id", Integer.class).get());
-                    System.out.println(produ.getId() + "----" + produ.getNombre());
+                    //System.out.println(produ.getId() + "----" + produ.getNombre());
 
                     freeMarkerVars.put("producto", produ);
 
@@ -258,7 +259,7 @@ public class StoreController {
 
                     //int id = Integer.parseInt(ctx.pathParam("id"));
                     Producto produ = database.getProductoByID(ctx.pathParam("id", Integer.class).get());
-                    System.out.println(produ.getId() + "----" + produ.getNombre());
+                    //System.out.println(produ.getId() + "----" + produ.getNombre());
                     String nombre = ctx.formParam("nombre");
                     BigDecimal precio = new BigDecimal(ctx.formParam("precio"));
                     database.actualizarProducto(produ.getId(),nombre,precio);

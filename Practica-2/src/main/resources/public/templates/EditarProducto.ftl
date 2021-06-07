@@ -33,14 +33,14 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="precio" class="form-label">Precio:</label>
-                                    <input type="number" min="1" value="1" class="form-control" name="precio" value="${producto.precio}" placeholder="(RD$)">
+                                    <input type="number" min="1" value="${producto.precio}" class="form-control" name="precio" placeholder="(RD$)">
                                 </div>
                                 <div class="mb-3 form-check">
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                    <input hidden value ="${producto.id}" name="id">
-                                    <button type="submit" class="btn btn-primary btn-dark">Registrar</button>
+<#--                                    <input hidden value ="${producto.id}" name="id">-->
+                                    <button type="submit" class="btn btn-primary btn-dark">Actualizar</button>
                             </div>
                         </div>
 
