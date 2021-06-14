@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                    <input hidden value ="${producto.id}" name="id">
+<#--                                    <input hidden value ="${producto.id}" name="id">-->
                                     <button type="submit" class="btn btn-primary btn-dark">Actualizar</button>
                             </div>
                         </div>
