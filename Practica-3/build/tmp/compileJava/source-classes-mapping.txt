@@ -18,9 +18,9 @@ edu/pucmm/eict/Utils/ProductoException.java
  edu.pucmm.eict.Utils.ProductoException
 edu/pucmm/eict/Services/StoreServices.java
  edu.pucmm.eict.Services.StoreServices
-edu/pucmm/eict/Controllers/StoreController.java
- edu.pucmm.eict.Controllers.StoreController
 edu/pucmm/eict/Controllers/UserController.java
  edu.pucmm.eict.Controllers.UserController
 edu/pucmm/eict/Main.java
  edu.pucmm.eict.Main
+edu/pucmm/eict/Controllers/StoreController.java
+ edu.pucmm.eict.Controllers.StoreController

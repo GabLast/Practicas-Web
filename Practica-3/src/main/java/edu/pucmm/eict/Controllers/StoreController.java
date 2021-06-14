@@ -68,21 +68,14 @@ public class StoreController {
                 }
 
                 //Verificar cookie
-                System.out.println("Fuera del cookie if");
                 if(ctx.cookie("rememberme") != null){
-                    System.out.println("DENTRO del cookie if");
                     StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
                     textEncryptor.setPassword("TH!SisTH3P@SSw0rD"); //this should be put in an enviroment variable?
                     String myDecryptedText = textEncryptor.decrypt(ctx.cookie("rememberme"));
                     usuario = UserService.getUserByUsername(myDecryptedText);
                     ctx.sessionAttribute("usuario", usuario);
-                    usuario = ctx.sessionAttribute("usuario");
                 }
-                if(usuario== null)
-                {
-                    System.out.println("DENTRO USER NULL");
-                }
-
+                usuario = ctx.sessionAttribute("usuario");
             });
 
             //Control de productos

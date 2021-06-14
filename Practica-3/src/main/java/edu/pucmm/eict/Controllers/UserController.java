@@ -2,19 +2,12 @@ package edu.pucmm.eict.Controllers;
 
 //import edu.pucmm.eict.Database.Fake;
 import edu.pucmm.eict.Models.CarritoCompras;
-import edu.pucmm.eict.Models.ProductoCompra;
 import edu.pucmm.eict.Models.Usuario;
 import edu.pucmm.eict.Services.UserService;
 import io.javalin.Javalin;
-import io.javalin.plugin.rendering.JavalinRenderer;
-import io.javalin.plugin.rendering.template.JavalinFreemarker;
-import org.jasypt.util.text.AES256TextEncryptor;
+
 import org.jasypt.util.text.StrongTextEncryptor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
@@ -64,7 +57,6 @@ public class UserController {
                                 textEncryptor.setPassword("TH!SisTH3P@SSw0rD"); //this should be put in an enviroment variable?
                                 String myEncryptedText = textEncryptor.encrypt(cookie);
                                 ctx.cookie("rememberme", myEncryptedText , 604800);
-
                             }
                         }
 
