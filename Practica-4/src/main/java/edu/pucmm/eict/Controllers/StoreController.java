@@ -96,7 +96,7 @@ public class StoreController {
 
                     verificarLogin(usuario, freeMarkerVars);
 //                    freeMarkerVars.put("productos", database.getProductos());
-                    freeMarkerVars.put("productos", StoreServices.getListaProductos());
+//                    freeMarkerVars.put("productos", StoreServices.getListaProductos());
 
                     //ctx.result("nice job");
                     ctx.render("/public/templates/ComprarProductos.ftl", freeMarkerVars);
@@ -107,7 +107,8 @@ public class StoreController {
                     int id = ctx.formParam("idProduct", Integer.class).get();
 
 //                    Producto producto = database.getProductoByID(id);
-                    Producto producto = StoreServices.getProductoByID(id);
+//                    Producto producto = StoreServices.getProductoByID(id);
+                    Producto producto = null;
                     if (producto == null)
                     {
                         ctx.redirect("/404.html");
@@ -158,8 +159,8 @@ public class StoreController {
 //                        database.agregarVenta(factura);
                         java.util.Date date1 = new java.util.Date();
                         java.sql.Date date = new java.sql.Date(date1.getTime());
-                        Venta factura = new Venta(-1, cliente, micarrito.getMiCarrito(), date);
-                        StoreServices.crearVenta(factura);
+                        Venta factura = null;//new Venta(-1, cliente, micarrito.getMiCarrito(), date);
+//                        StoreServices.crearVenta(factura);
                         micarrito.limpiarCarrito();
                         ctx.sessionAttribute("micarrito", null);
                         ctx.redirect("/productos/comprar");
@@ -193,7 +194,7 @@ public class StoreController {
                     verificarLogin(usuario, freeMarkerVars);
                     freeMarkerVars.put("cantidad", micarrito.contarProductos());
 //                    freeMarkerVars.put("ventas",database.getVentas());
-                    freeMarkerVars.put("ventas",StoreServices.getListaVentas());
+                    freeMarkerVars.put("ventas",null/*StoreServices.getListaVentas()*/);
                     ctx.render("/public/templates/HistorialVentas.ftl", freeMarkerVars);
                 });
 
@@ -218,7 +219,7 @@ public class StoreController {
                     verificarLogin(usuario, freeMarkerVars);
                     freeMarkerVars.put("title", "Gestionar Productos");
                     //freeMarkerVars.put("productos", database.getProductos());
-                    freeMarkerVars.put("productos", StoreServices.getListaProductos());
+                    freeMarkerVars.put("productos", null/*StoreServices.getListaProductos()*/);
                     freeMarkerVars.put("cantidad", micarrito.contarProductos());
                     ctx.render("/public/templates/GestionProductos.ftl", freeMarkerVars);
                 });
@@ -238,10 +239,10 @@ public class StoreController {
 
 
 //                    Producto nuevo = new Producto(database.getProductos().get(database.getProductos().size()-1).getId()+1, nombre, precio);
-                    Producto nuevo = new Producto(StoreServices.getListaProductos().get(StoreServices.getListaProductos().size()-1).getId()+1, nombre, precio);
+                    Producto nuevo = null;
 
                     //database.agregarProducto(nuevo);
-                    StoreServices.crearProducto(nuevo);
+//                    StoreServices.crearProducto(nuevo);
 
                     ctx.redirect("/gestion/productos/agregar");
                 });
@@ -254,7 +255,7 @@ public class StoreController {
 
                     //int id = Integer.parseInt(ctx.pathParam("id"));
 //                    Producto produ = database.getProductoByID(ctx.pathParam("id", Integer.class).get());
-                    Producto produ = StoreServices.getProductoByID(ctx.pathParam("id", Integer.class).get());
+                    Producto produ = null;//StoreServices.getProductoByID(ctx.pathParam("id", Integer.class).get());
                     //System.out.println(produ.getId() + "----" + produ.getNombre());
 
                     freeMarkerVars.put("producto", produ);
@@ -266,7 +267,7 @@ public class StoreController {
 
                     //int id = Integer.parseInt(ctx.pathParam("id"));
                     //Producto produ = database.getProductoByID(ctx.pathParam("id", Integer.class).get());
-                    Producto produ = StoreServices.getProductoByID(ctx.pathParam("id", Integer.class).get());
+                    Producto produ = null;// StoreServices.getProductoByID(ctx.pathParam("id", Integer.class).get());
 
                     //System.out.println(produ.getId() + "----" + produ.getNombre());
                     String nombre = ctx.formParam("nombre");
@@ -275,7 +276,7 @@ public class StoreController {
                     //database.actualizarProducto(produ.getId(),nombre,precio);
                     produ.setNombre(nombre);
                     produ.setPrecio(precio);
-                    StoreServices.actualizarProducto(produ);
+//                    StoreServices.actualizarProducto(produ);
 
                     ctx.redirect("/gestion/productos");
                 });
@@ -286,15 +287,15 @@ public class StoreController {
 
                     int id = ctx.formParam("productID", Integer.class).get();
 //                    Producto produ = database.getProductoByID(id);
-                    Producto produ = StoreServices.getProductoByID(id);
+                    Producto produ = null;//StoreServices.getProductoByID(id);
                     if (produ != null)
                     {
                         //database.removerProducto(produ);
-                        StoreServices.borrarProducto(produ.getId());
+//                        StoreServices.borrarProducto(produ.getId());
                     }
                     freeMarkerVars.put("title", "Gestionar Productos");
 //                    freeMarkerVars.put("productos", database.getProductos());
-                    freeMarkerVars.put("productos", StoreServices.getListaProductos());
+                    freeMarkerVars.put("productos", null/*StoreServices.getListaProductos()*/);
                     freeMarkerVars.put("cantidad", micarrito.contarProductos());
                     ctx.render("/public/templates/GestionProductos.ftl", freeMarkerVars);
                 });

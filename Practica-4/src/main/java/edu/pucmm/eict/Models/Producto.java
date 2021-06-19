@@ -1,27 +1,39 @@
 package edu.pucmm.eict.Models;
 
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Producto implements Serializable{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @NotNull
+    private int idproducto;
+    @NotNull @Column(unique=true)
     private String nombre;
     @NotNull
     private BigDecimal precio;
+    @NotNull @ColumnDefault("0")
+    private int borrado;
 
     @OneToMany(mappedBy = "venta")
-    private Set<Venta> productosComprados;
+    private List<ProductoVentas> listaventas;
+
+    @OneToMany(mappedBy = "producto")
+    private List<FotoProducto> listafotos;
+
+    @OneToMany(mappedBy = "producto")
+    private List<Comentario> comentarios;
+
+
 
     public Producto(int id, String nombre, BigDecimal precio) {
-        this.id = id;
+        this.idproducto = id;
         this.nombre = nombre;
         this.precio = precio;
     }
@@ -31,11 +43,19 @@ public class Producto implements Serializable{
     }
 
     public int getId() {
-        return id;
+        return idproducto;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idproducto = id;
+    }
+
+    public int getBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(int borrado) {
+        this.borrado = borrado;
     }
 
     public String getNombre() {

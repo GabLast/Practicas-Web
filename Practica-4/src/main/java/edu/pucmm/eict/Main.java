@@ -18,7 +18,12 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         //*********************************************************************
+        //Base de Datos
+        DBConfig.startDb();
 
+        //Prueba de Conexión.
+        DBConnection.getInstancia().testConexion();
+        UserService.init();
         //*********************************************************************
 
          Javalin app = Javalin.create(config -> {

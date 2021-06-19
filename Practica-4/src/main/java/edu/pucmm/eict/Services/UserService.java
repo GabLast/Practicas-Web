@@ -1,6 +1,7 @@
 package edu.pucmm.eict.Services;
 
 import edu.pucmm.eict.Database.DBConnection;
+import edu.pucmm.eict.Database.DBEntityManager;
 import edu.pucmm.eict.Models.Producto;
 import edu.pucmm.eict.Models.Usuario;
 import org.jasypt.util.password.StrongPasswordEncryptor;
@@ -16,12 +17,26 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UserService {
+public class UserService extends DBEntityManager<Usuario> {
+
+    private static UserService instancia;
+
+    private UserService() {
+        super(Usuario.class);
+    }
+
+    public static UserService getInstancia(){
+        if(instancia==null){
+            instancia = new UserService();
+        }
+        return instancia;
+    }
+
     public static void init() {
         Usuario admin = new Usuario("admin", "admin", "Administrador", "Admin");
         Usuario yo = new Usuario("gab", "123", "Cliente", "Gabriel");
-        crearUser(admin);
-        crearUser(yo);
+        UserService.getInstancia().insert(admin);
+        UserService.getInstancia().insert(yo);
     }
 
     public static boolean crearUser(Usuario user){
@@ -107,35 +122,7 @@ public class UserService {
         }
     }
 
-    public static Boolean addCookie(Usuario user, String cookie){
-        boolean ok =false;
 
-        Connection con = null;
-        try {
-
-            String query = "update usuario set cookieencrypted = ? where username = ?";
-            con = DBConnection.getInstancia().getConexion();
-            //
-            PreparedStatement prepareStatement = con.prepareStatement(query);
-            //Antes de ejecutar seteo los parametros.
-            prepareStatement.setString(1, cookie);
-            prepareStatement.setString(2, user.getUsername());
-            //
-            int fila = prepareStatement.executeUpdate();
-            ok = fila > 0 ;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
-        } finally{
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        return ok;
-    }
 
     public static List<Usuario> getListaUsuarios(){
         Usuario usuario;

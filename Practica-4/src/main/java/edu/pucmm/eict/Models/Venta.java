@@ -2,7 +2,8 @@ package edu.pucmm.eict.Models;
 
 import com.sun.istack.NotNull;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,20 +13,20 @@ import java.util.Set;
 public class Venta implements Serializable{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idventa;
     @NotNull
     private String cliente;
     @NotNull
     private Date fechaCompra;
 
-    @OneToMany(mappedBy = "ventas")
-    private Set<Producto> productosComprados;
+    @OneToMany(mappedBy = "producto")
+    private List<ProductoVentas> listaproductos;
 
-    public Venta(long id, String cliente, Set<Producto> productosComprados, Date fechaCompra) {
-        this.id = id;
+    public Venta(long id, String cliente, List<ProductoVentas> listaproductos) {
+        this.idventa = id;
         this.cliente = cliente;
-        this.productosComprados = productosComprados;
-        this.fechaCompra = fechaCompra;
+        this.listaproductos = listaproductos;
+        this.fechaCompra = new Date();
     }
 
     public Venta() {
@@ -33,11 +34,11 @@ public class Venta implements Serializable{
     }
 
     public long getId() {
-        return id;
+        return idventa;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idventa = id;
     }
 
     public String getCliente() {
@@ -48,12 +49,12 @@ public class Venta implements Serializable{
         this.cliente = cliente;
     }
 
-    public Set<Producto> getproductosComprados() {
-        return productosComprados;
+    public List<ProductoVentas> getproductosComprados() {
+        return listaproductos;
     }
 
-    public void setproductosComprados(Set<Producto> productosComprados) {
-        this.productosComprados = productosComprados;
+    public void setproductosComprados(List<ProductoVentas> productosComprados) {
+        this.listaproductos = productosComprados;
     }
 
     public Date getFechaCompra() {
