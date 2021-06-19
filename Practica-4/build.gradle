@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'edu.pucmm.eict'
+version '1.0-SNAPSHOT'
+
+mainClassName = 'edu.pucmm.eict.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    //Javalin
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
+    implementation 'io.javalin:javalin:3.13.7'
+    //Freemarker for templates
+    implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.28'
+    //Manejador de base de datos
+    implementation 'com.h2database:h2:1.4.200'
+    //Encriptacion
+    implementation 'org.jasypt:jasypt:1.9.3'
+    //ORM - Hibernate
+    implementation 'org.hibernate:hibernate-core:5.4.17.Final'
+    implementation 'org.hibernate:hibernate-entitymanager:5.4.17.Final'
+}
+
+test {
+    useJUnitPlatform()
+}
