@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-4" style="padding-top: 25%">
 
-                    <form method="post" action="/gestion/productos/editar/${producto.id}">
+                    <form method="post" action="/gestion/productos/editar/${producto.idproducto}">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Editar Productos</h5>

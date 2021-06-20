@@ -38,7 +38,6 @@ public class UserController {
                 post("/login/auth", ctx -> {
                     String username = ctx.formParam("username");
                     String password = ctx.formParam("password");
-                    //Usuario user = database.loginAuth(username, password);
                     Usuario user = UserService.login(ctx.formParam("username"),ctx.formParam("password"));
                     String remember = ctx.formParam("remember");
 

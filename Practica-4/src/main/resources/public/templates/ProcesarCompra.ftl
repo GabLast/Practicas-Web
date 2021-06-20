@@ -43,7 +43,7 @@
                 </thead>
                 <tbody class="text-center table-bordered">
                 <#assign totalfactura = 0>
-                <#if productos?size gt 0>
+                <#if productos?has_content>
                 <#list productos as p>
                 <tr>
                     <form method="POST" action="/productos/comprar/remover">

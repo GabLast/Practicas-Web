@@ -1,6 +1,5 @@
 package edu.pucmm.eict.Models;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -16,7 +15,7 @@ public class Comentario implements Serializable {
     private int descripcion;
     @NotNull
     private Date fechaCreacion;
-    @NotNull @ColumnDefault("0")
+    @NotNull @Column(columnDefinition = "int default 0")
     private int borrado;
     @NotNull
     private String originalposter;

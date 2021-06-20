@@ -32,23 +32,23 @@
                     </tr>
                     </thead>
                     <tbody class="text-center table-bordered">
-                    <#if productos?size gt 0>
+                    <#if productos?has_content>
                     <#list productos as p>
                     <tr>
-                        <td>${p.id}</td>
+                        <td>${p.idproducto}</td>
                         <td>${p.nombre}</td>
                         <td>RD$${p.precio}</td>
                         <td>
                             <div class="container">
                                 <div class="row justify-content-evenly">
                                     <div class="col-6">
-                                        <a href="/gestion/productos/editar/${p.id}">
+                                        <a href="/gestion/productos/editar/${p.idproducto}">
                                             <button class="btn btn-sm" style="background-color: dodgerblue; color: whitesmoke"><span class="material-icons">edit</span></button>
                                         </a>
                                     </div>
                                     <div class="col-6">
                                         <form method="post" action="/gestion/productos/eliminar">
-                                            <input hidden value ="${p.id}" name="productID">
+                                            <input hidden value ="${p.idproducto}" name="productID">
                                             <button class="btn btn-sm btn-danger" type="submit" style="background-color: darkred; color: whitesmoke"><span class="material-icons">delete</span></button>
                                         </form>
                                     </div>

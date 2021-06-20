@@ -4,7 +4,7 @@ import edu.pucmm.eict.Controllers.StoreController;
 import edu.pucmm.eict.Controllers.UserController;
 import edu.pucmm.eict.Database.DBConfig;
 import edu.pucmm.eict.Database.DBConnection;
-import edu.pucmm.eict.Services.StoreServices;
+import edu.pucmm.eict.Services.ProductService;
 import edu.pucmm.eict.Services.UserService;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
@@ -41,6 +41,12 @@ public class Main {
 
         app.error(404, ctx -> {
             ctx.redirect("/404.html");
+        });
+
+        app.exception(Exception.class, (exception, ctx) -> {
+            ctx.status(500);
+            ctx.html("<h1>Error no recuperado:"+exception.getMessage()+"</h1>");
+            exception.printStackTrace();
         });
 
         new UserController(app).aplicarRutas();

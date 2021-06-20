@@ -26,24 +26,42 @@
                     </tr>
                     </thead>
                     <tbody class="text-center table-bordered">
-                    <#if productos?size gt 0>
+                    <#if productos?has_content>
                     <#list productos as p>
                         <tr>
                             <form method="POST" action="/productos/listar/addtocart/">
-                                <td>${p.id}<input hidden value ="${p.id}" name="idProduct"></td>
+                                <td>${p.idproducto}<input hidden value ="${p.idproducto}" name="idProduct"></td>
                                 <td>${p.nombre}</td>
                                 <td>RD$${p.precio}</td>
                                 <td>
                                     <input type="number" class="form-control form-control-sm" name="cantidad" min="1" value="1" />
                                 </td>
                                 <td>
-                                    <button class="btn btn-success btn-sm"  type="submit"><span class="material-icons">add_circle</span></button>
+                                    <div class="row justify-content-evenly">
+                                        <div class="col-6">
+                                            <a href=""><#--/productos/view?${p.id}-->
+                                                <button class="btn btn-sm" style="background-color: dodgerblue; color: whitesmoke"><span class="material-icons">visibility</span></button>
+                                            </a>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-success btn-sm"  type="submit"><span class="material-icons">add_circle</span></button>
+                                        </div>
+                                    </div>
                                 </td>
                             </form>
                         </tr>
                     </#list>
                     </#if>
                     </tbody>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <#if paginas?has_content>
+                                <li class="page-item">
+                                    <a class="page-link" href="'/products/'+${hola}">${paginas.numero}</a>
+                                </li>
+                            </#if>
+                        </ul>
+                    </nav>
                 </table>
             </div>
     </div>

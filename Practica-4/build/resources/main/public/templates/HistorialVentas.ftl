@@ -38,7 +38,7 @@
                             <tbody class="text-center table-bordered">
                             <h5 style="padding: 1rem" class="text-left">Cliente: ${venta.cliente} - Fecha: ${venta.fechaCompra?datetime}</h5>
                             <#assign totalfactura = 0>
-                            <#if venta.productosComprados?size gt 0>
+                            <#if venta.productosComprados?has_content>
                                 <#list venta.productosComprados as p>
                                     <tr>
                                         <td>${p.nombre}</td>

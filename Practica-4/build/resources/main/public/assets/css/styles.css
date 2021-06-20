@@ -6,3 +6,10 @@
 body {
     background: whitesmoke !important;
 }
+
+input[type="file"] {
+    display: none !important;
+}
+.custom-file-upload {
+    cursor: pointer !important;
+}

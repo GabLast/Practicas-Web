@@ -27,11 +27,23 @@
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label">Nombre:</label>
-                                        <input type="text" class="form-control" name="nombre" placeholder="Producto" aria-describedby="emailHelp">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Producto">
                                     </div>
                                     <div class="mb-3">
                                         <label for="precio" class="form-label">Precio:</label>
-                                        <input type="number" min="1" value="1" class="form-control" name="precio" placeholder="(RD$)">
+                                        <input type="number" min="1" value="1" class="form-control" id="precio" name="precio" placeholder="(RD$)">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descripcion" class="form-label">Descripci&oacuten:</label>
+                                        <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Detalles">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Fotos:</label>
+                                        <br>
+                                        <label for="fotos" class="form-label btn btn-primary material-icons custom-file-upload" style="background-color: dodgerblue; color: whitesmoke">
+                                            image
+                                        </label>
+                                        <input type="file" class="form-control" id="fotos" name="fotos" multiple required hidden>
                                     </div>
                                     <div class="mb-3 form-check">
                                     </div>

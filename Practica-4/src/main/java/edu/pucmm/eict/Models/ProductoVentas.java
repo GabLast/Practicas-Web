@@ -3,6 +3,7 @@ package edu.pucmm.eict.Models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import com.sun.istack.NotNull;
 
@@ -73,6 +74,7 @@ public class ProductoVentas implements Serializable{
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
 }
 
 @Embeddable
@@ -98,5 +100,23 @@ class ProductoVentasID implements Serializable {
 
     public void setProductoid(int idproducto) {
         this.idproducto = idproducto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductoVentasID that = (ProductoVentasID) o;
+
+        if (idventa != that.idventa) return false;
+        return idproducto == that.idproducto;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idventa;
+        result = 31 * result + idproducto;
+        return result;
     }
 }

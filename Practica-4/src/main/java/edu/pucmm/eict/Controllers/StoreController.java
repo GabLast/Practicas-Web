@@ -1,15 +1,14 @@
 package edu.pucmm.eict.Controllers;
 
 //import edu.pucmm.eict.Database.Fake;
+
 import edu.pucmm.eict.Models.*;
-import edu.pucmm.eict.Services.StoreServices;
 import edu.pucmm.eict.Services.UserService;
 import io.javalin.Javalin;
 import org.jasypt.util.text.StrongTextEncryptor;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.sql.Date;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
@@ -23,28 +22,23 @@ public class StoreController {
 
     static String requestedURL = "";
 
-    public StoreController(Javalin app){
+    public StoreController(Javalin app) {
         this.app = app;
     }
 
     CarritoCompras micarrito;
     static Usuario usuario;
 
-    private void verificarLogin(Usuario usuario, Map<String, Object> freeMarkerVars)
-    {
-        if(usuario != null)
-        {
+    private void verificarLogin(Usuario usuario, Map<String, Object> freeMarkerVars) {
+        if (usuario != null) {
             freeMarkerVars.put("nombre", usuario.getNombre());
-            if (usuario.getuserRole().equalsIgnoreCase("Administrador"))
-            {
+            if (usuario.getuserRole().equalsIgnoreCase("Administrador")) {
                 freeMarkerVars.put("admin", true);
-            }
-            else{
+            } else {
                 freeMarkerVars.put("admin", false);
             }
             freeMarkerVars.put("logged", true);
-        }else
-        {
+        } else {
             freeMarkerVars.put("admin", false);
             freeMarkerVars.put("logged", false);
         }
@@ -59,20 +53,18 @@ public class StoreController {
                 micarrito = ctx.sessionAttribute("micarrito");
                 ctx.header("acceso");
                 //Inicializando carrito si es una sesion nueva
-                if(micarrito == null)
-                {
+                if (micarrito == null) {
                     List<ProductoCompra> compras = new ArrayList<>();
-//                    micarrito = new CarritoCompras(database.getVentas().get(database.getVentas().size()-1).getId()+1, compras);
                     micarrito = new CarritoCompras(1, compras);
                     ctx.sessionAttribute("micarrito", micarrito);
                 }
 
                 //Verificar cookie
-                if(ctx.cookie("rememberme") != null){
+                if (ctx.cookie("rememberme") != null) {
                     StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
                     textEncryptor.setPassword("TH!SisTH3P@SSw0rD"); //this should be put in an enviroment variable?
                     String myDecryptedText = textEncryptor.decrypt(ctx.cookie("rememberme"));
-                    usuario = UserService.getUserByUsername(myDecryptedText);
+                    usuario = UserService.getInstancia().getUserByUsername(myDecryptedText);
                     ctx.sessionAttribute("usuario", usuario);
                 }
                 usuario = ctx.sessionAttribute("usuario");
@@ -102,6 +94,10 @@ public class StoreController {
                     ctx.render("/public/templates/ComprarProductos.ftl", freeMarkerVars);
                 });
 
+                get("/listar/view?:productid", ctx -> {
+                    ctx.result("nice");
+                });
+
                 //Agregando productos al carrito de compras
                 post("/listar/addtocart", ctx -> {
                     int id = ctx.formParam("idProduct", Integer.class).get();
@@ -109,13 +105,12 @@ public class StoreController {
 //                    Producto producto = database.getProductoByID(id);
 //                    Producto producto = StoreServices.getProductoByID(id);
                     Producto producto = null;
-                    if (producto == null)
-                    {
+                    if (producto == null) {
                         ctx.redirect("/404.html");
                     }
 
                     int cantidad = Integer.parseInt(ctx.formParam("cantidad"));
-                    ProductoCompra pro = new ProductoCompra(producto.getId(), producto.getNombre(), producto.getPrecio(), cantidad);
+                    ProductoCompra pro = new ProductoCompra(producto.getIdproducto(), producto.getNombre(), producto.getPrecio(), cantidad);
                     micarrito.agregarProducto(pro);
 
                     ctx.redirect("/productos/listar");
@@ -128,9 +123,9 @@ public class StoreController {
                     freeMarkerVars.put("cantidad", micarrito.contarProductos());
                     verificarLogin(usuario, freeMarkerVars);
                     freeMarkerVars.put("productos", micarrito.getMiCarrito());
-                    if(micarrito.getMiCarrito().size() > 0) {
+                    if (micarrito.getMiCarrito().size() > 0) {
                         freeMarkerVars.put("empty", false);
-                    }else {
+                    } else {
                         freeMarkerVars.put("empty", true);
                     }
                     ctx.render("/public/templates/ProcesarCompra.ftl", freeMarkerVars);
@@ -152,8 +147,7 @@ public class StoreController {
 
                 post("/comprar/procesar", ctx -> {
 
-                    if(micarrito.getMiCarrito().size() > 0)
-                    {
+                    if (micarrito.getMiCarrito().size() > 0) {
                         String cliente = ctx.formParam("nombre");
 //                        Venta factura = new Venta(database.getVentas().get(database.getVentas().size() - 1).getId() + 1, cliente, micarrito.getMiCarrito(),new Date());
 //                        database.agregarVenta(factura);
@@ -164,8 +158,7 @@ public class StoreController {
                         micarrito.limpiarCarrito();
                         ctx.sessionAttribute("micarrito", null);
                         ctx.redirect("/productos/comprar");
-                    }
-                    else{
+                    } else {
                         Map<String, Object> freeMarkerVars = new HashMap<>();
                         freeMarkerVars.put("title", "Carrito");
                         freeMarkerVars.put("empty", true);
@@ -182,7 +175,7 @@ public class StoreController {
 
                 before(ctx -> {
                     Usuario user = ctx.sessionAttribute("usuario");
-                    if (user == null){
+                    if (user == null) {
                         requestedURL = ctx.req.getRequestURI();
                         ctx.redirect("/Login.html");
                     }
@@ -194,7 +187,7 @@ public class StoreController {
                     verificarLogin(usuario, freeMarkerVars);
                     freeMarkerVars.put("cantidad", micarrito.contarProductos());
 //                    freeMarkerVars.put("ventas",database.getVentas());
-                    freeMarkerVars.put("ventas",null/*StoreServices.getListaVentas()*/);
+                    freeMarkerVars.put("ventas", null/*StoreServices.getListaVentas()*/);
                     ctx.render("/public/templates/HistorialVentas.ftl", freeMarkerVars);
                 });
 
@@ -204,7 +197,7 @@ public class StoreController {
 
                 before(ctx -> {
                     Usuario user = ctx.sessionAttribute("usuario");
-                    if (user == null){
+                    if (user == null) {
                         requestedURL = ctx.req.getRequestURI();
                         ctx.redirect("/Login.html");
                     }
@@ -288,8 +281,7 @@ public class StoreController {
                     int id = ctx.formParam("productID", Integer.class).get();
 //                    Producto produ = database.getProductoByID(id);
                     Producto produ = null;//StoreServices.getProductoByID(id);
-                    if (produ != null)
-                    {
+                    if (produ != null) {
                         //database.removerProducto(produ);
 //                        StoreServices.borrarProducto(produ.getId());
                     }
@@ -299,6 +291,7 @@ public class StoreController {
                     freeMarkerVars.put("cantidad", micarrito.contarProductos());
                     ctx.render("/public/templates/GestionProductos.ftl", freeMarkerVars);
                 });
+
             });
 
         });
