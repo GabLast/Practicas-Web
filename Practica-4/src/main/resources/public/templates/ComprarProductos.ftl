@@ -40,7 +40,7 @@
                                     <div class="row justify-content-evenly">
                                         <div class="col-6">
                                             <a href=""><#--/productos/view?${p.id}-->
-                                                <button class="btn btn-sm" style="background-color: dodgerblue; color: whitesmoke"><span class="material-icons">visibility</span></button>
+                                                <button class="btn btn-sm" style="background-color: dodgerblue; color: whitesmoke"><span class="material-icons">pageview</span></button>
                                             </a>
                                         </div>
                                         <div class="col-6">
@@ -53,17 +53,19 @@
                     </#list>
                     </#if>
                     </tbody>
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-right">
-                            <#if cantPaginas?has_content>
-                                <#list 0..cantPaginas as index>
-                                    <li class="page-item">
-                                    <a class="page-link" href="/productos/listar?${hola}">${index}</a>
-                                </li>
-                                </#list>
-                            </#if>
-                        </ul>
-                    </nav>
+                    <tfoot>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-right">
+                                <#if cantPaginas?has_content>
+                                    <#list 1..cantPaginas as index>
+                                        <li class="page-item">
+                                            <a class="page-link" href="/productos/listar?view_page=${index}">${index}</a>
+                                        </li>
+                                    </#list>
+                                </#if>
+                            </ul>
+                        </nav>
+                    </tfoot>
                 </table>
             </div>
     </div>

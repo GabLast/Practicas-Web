@@ -38,7 +38,7 @@ public class UserService extends DBEntityManager<Usuario> {
 
     public Usuario getUserByUsername(String username) {
         EntityManager em = getEntityManager();
-        Query query = em.createQuery("SELECT u FROM Usuario u where u.username = :username");
+        Query query = em.createQuery("SELECT u FROM Usuario u where u.username = :username", Usuario.class);
         query.setParameter("username", username);
         return (Usuario) query.getResultList().get(0);
     }

@@ -20,7 +20,7 @@
 
 <body class="text-center">
     <nav class="navbar navbar-dark navbar-expand-md bg-dark text-justify navigation-clean">
-        <div class="container-fluid"><a class="navbar-brand text-light" href="/productos/listar">P2-Shop</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><a class="navbar-brand text-light" href="/">P2-Shop</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse text-right" id="navcol-1" style="margin-top: 5px;">
                 <#if logged == true>
                       <span class="navbar-text">Bienvenido, ${nombre}</span>
@@ -29,7 +29,7 @@
                 </#if>
                 <#if admin == true>
                     <ul class="navbar-nav ml-auto text-right">
-                        <li class="nav-item"><a class="nav-link text-light" href="/productos/listar">Comprar</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="/productos/listar?view_page=1">Comprar</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/historial/ventas">Ventas Realizadas</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/gestion/productos">Administrar Productos</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/productos/comprar">Carrito (${cantidad})</a></li>
@@ -37,7 +37,7 @@
                     </ul>
                 <#else>
                     <ul class="navbar-nav ml-auto text-right">
-                        <li class="nav-item"><a class="nav-link text-light" href="/productos/listar">Comprar</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="/productos/listar?view_page=1">Comprar</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/productos/comprar">Carrito (${cantidad})</a></li>
                         <#if logged == true>
                             <li class="nav-item"><a class="nav-link text-light" href="/logout">Log Out</a></li>

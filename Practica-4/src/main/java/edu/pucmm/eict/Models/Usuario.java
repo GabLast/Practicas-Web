@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //crear el ID de forma automatica
-    private int iduser;
+    private long iduser;
     @NotNull @Column(unique=true)
     private String username;
     @NotNull
@@ -62,11 +62,11 @@ public class Usuario implements Serializable {
         return nombre;
     }
 
-    public int getIduser() {
+    public long getIduser() {
         return iduser;
     }
 
-    public void setIduser(int iduser) {
+    public void setIduser(long iduser) {
         this.iduser = iduser;
     }
 }

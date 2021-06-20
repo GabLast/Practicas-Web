@@ -10,7 +10,7 @@ public class FotoProducto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idfotoproducto;
+    private long idfotoproducto;
     @NotNull
     private String mimeType;
     @Lob @NotNull
@@ -19,8 +19,7 @@ public class FotoProducto implements Serializable {
     @ManyToOne
     private Producto producto;
 
-    public FotoProducto(int idfotoproducto, @NotNull String mimeType, @NotNull String fotoBase64, Producto producto) {
-        this.idfotoproducto = idfotoproducto;
+    public FotoProducto(@NotNull String mimeType, @NotNull String fotoBase64, Producto producto) {
         this.mimeType = mimeType;
         this.fotoBase64 = fotoBase64;
         this.producto = producto;
@@ -30,11 +29,11 @@ public class FotoProducto implements Serializable {
 
     }
 
-    public int getIdfotoproducto() {
+    public long getIdfotoproducto() {
         return idfotoproducto;
     }
 
-    public void setIdfotoproducto(int idfotoproducto) {
+    public void setIdfotoproducto(long idfotoproducto) {
         this.idfotoproducto = idfotoproducto;
     }
 

@@ -8,16 +8,18 @@ import java.util.Objects;
 import com.sun.istack.NotNull;
 
 @Entity(name = "ProductoVentas")
-@Table(name ="ProductoVentas")
-public class ProductoVentas implements Serializable{
+@Table(name = "ProductoVentas")
+public class ProductoVentas implements Serializable {
 
     @EmbeddedId
     private ProductoVentasID productoVentasID;
 
-    @ManyToOne @MapsId("idventa")
+    @ManyToOne
+    @MapsId("idventa")
     private Venta venta;
 
-    @ManyToOne @MapsId("idproducto")
+    @ManyToOne
+    @MapsId("idproducto")
     private Producto producto;
 
     @NotNull
@@ -25,15 +27,15 @@ public class ProductoVentas implements Serializable{
     @NotNull
     private int cantidad;
 
-    public ProductoVentas(ProductoVentasID productoVentasID, Venta venta, Producto producto, BigDecimal precio, int cantidad) {
-        this.productoVentasID = productoVentasID;
+    public ProductoVentas() {
+    }
+
+    public ProductoVentas(Venta venta, Producto producto, BigDecimal precio, int cantidad) {
         this.venta = venta;
         this.producto = producto;
         this.precio = precio;
         this.cantidad = cantidad;
     }
-
-    public ProductoVentas() {    }
 
     public ProductoVentasID getProductoVentasID() {
         return productoVentasID;
@@ -74,31 +76,30 @@ public class ProductoVentas implements Serializable{
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-
 }
 
 @Embeddable
 class ProductoVentasID implements Serializable {
 
     @Column(name = "idventa")
-    private int idventa;
+    private long idventa;
 
     @Column(name = "idproducto")
-    private int idproducto;
+    private long idproducto;
 
-    public int getVentaid() {
+    public long getVentaid() {
         return idproducto;
     }
 
-    public void setVentaid(int idventa) {
+    public void setVentaid(long idventa) {
         this.idventa = idventa;
     }
 
-    public int getProductoid() {
+    public long getProductoid() {
         return idproducto;
     }
 
-    public void setProductoid(int idproducto) {
+    public void setProductoid(long idproducto) {
         this.idproducto = idproducto;
     }
 
@@ -115,8 +116,8 @@ class ProductoVentasID implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = idventa;
-        result = 31 * result + idproducto;
+        int result = (int) (idventa ^ (idventa >>> 32));
+        result = 31 * result + (int) (idproducto ^ (idproducto >>> 32));
         return result;
     }
 }

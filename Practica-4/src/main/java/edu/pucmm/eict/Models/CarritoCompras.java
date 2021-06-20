@@ -30,7 +30,7 @@ public class CarritoCompras {
         this.miCarrito = miCarrito;
     }
 
-    public ProductoCompra getProductoByID(int id) {
+    public ProductoCompra getProductoByID(long id) {
         return miCarrito.stream().filter(pro -> pro.getId() == id).findFirst().orElse(null);
     }
 

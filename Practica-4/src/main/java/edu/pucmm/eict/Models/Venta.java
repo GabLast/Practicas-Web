@@ -22,10 +22,8 @@ public class Venta implements Serializable{
     @OneToMany(mappedBy = "producto")
     private List<ProductoVentas> listaproductos;
 
-    public Venta(long id, String cliente, List<ProductoVentas> listaproductos) {
-        this.idventa = id;
+    public Venta(String cliente) {
         this.cliente = cliente;
-        this.listaproductos = listaproductos;
         this.fechaCompra = new Date();
     }
 
@@ -33,12 +31,12 @@ public class Venta implements Serializable{
 
     }
 
-    public long getId() {
+    public long getIdventa() {
         return idventa;
     }
 
-    public void setId(int id) {
-        this.idventa = id;
+    public void setIdventa(long idventa) {
+        this.idventa = idventa;
     }
 
     public String getCliente() {
@@ -49,19 +47,19 @@ public class Venta implements Serializable{
         this.cliente = cliente;
     }
 
-    public List<ProductoVentas> getproductosComprados() {
-        return listaproductos;
-    }
-
-    public void setproductosComprados(List<ProductoVentas> productosComprados) {
-        this.listaproductos = productosComprados;
-    }
-
     public Date getFechaCompra() {
         return fechaCompra;
     }
 
     public void setFechaCompra(Date fechaCompra) {
         this.fechaCompra = fechaCompra;
+    }
+
+    public List<ProductoVentas> getListaproductos() {
+        return listaproductos;
+    }
+
+    public void setListaproductos(List<ProductoVentas> listaproductos) {
+        this.listaproductos = listaproductos;
     }
 }

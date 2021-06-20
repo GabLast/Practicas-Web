@@ -1,13 +1,13 @@
 package edu.pucmm.eict.Services;
 
 import edu.pucmm.eict.Database.DBEntityManager;
-import edu.pucmm.eict.Models.Producto;
+import edu.pucmm.eict.Models.FotoProducto;
 
-public class FotoProduService extends DBEntityManager<Producto> {
+public class FotoProduService extends DBEntityManager<FotoProducto> {
     private static FotoProduService instancia;
 
     private FotoProduService() {
-        super(Producto.class);
+        super(FotoProducto.class);
     }
 
     public static FotoProduService getInstancia() {

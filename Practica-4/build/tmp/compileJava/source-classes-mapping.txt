@@ -1,39 +1,41 @@
-edu/pucmm/eict/Services/StoreService.java
- edu.pucmm.eict.Services.StoreService
-edu/pucmm/eict/Services/VentaService.java
- edu.pucmm.eict.Services.VentaService
-edu/pucmm/eict/Services/UserService.java
- edu.pucmm.eict.Services.UserService
-edu/pucmm/eict/Models/Venta.java
- edu.pucmm.eict.Models.Venta
-edu/pucmm/eict/Models/Usuario.java
- edu.pucmm.eict.Models.Usuario
-edu/pucmm/eict/Database/DBConfig.java
- edu.pucmm.eict.Database.DBConfig
-edu/pucmm/eict/Database/DBConnection.java
- edu.pucmm.eict.Database.DBConnection
 edu/pucmm/eict/Database/DBEntityManager.java
  edu.pucmm.eict.Database.DBEntityManager
-edu/pucmm/eict/Models/ProductoCompra.java
- edu.pucmm.eict.Models.ProductoCompra
-edu/pucmm/eict/Models/CarritoCompras.java
- edu.pucmm.eict.Models.CarritoCompras
-edu/pucmm/eict/Main.java
- edu.pucmm.eict.Main
-edu/pucmm/eict/Controllers/UserController.java
- edu.pucmm.eict.Controllers.UserController
-edu/pucmm/eict/Services/ProductService.java
- edu.pucmm.eict.Services.ProductService
-edu/pucmm/eict/Models/Producto.java
- edu.pucmm.eict.Models.Producto
-edu/pucmm/eict/Services/FotoProduService.java
- edu.pucmm.eict.Services.FotoProduService
-edu/pucmm/eict/Models/FotoProducto.java
- edu.pucmm.eict.Models.FotoProducto
+edu/pucmm/eict/Database/DBConnection.java
+ edu.pucmm.eict.Database.DBConnection
+edu/pucmm/eict/Database/DBConfig.java
+ edu.pucmm.eict.Database.DBConfig
 edu/pucmm/eict/Models/Comentario.java
  edu.pucmm.eict.Models.Comentario
-edu/pucmm/eict/Controllers/StoreController.java
- edu.pucmm.eict.Controllers.StoreController
+edu/pucmm/eict/Models/CarritoCompras.java
+ edu.pucmm.eict.Models.CarritoCompras
+edu/pucmm/eict/Models/FotoProducto.java
+ edu.pucmm.eict.Models.FotoProducto
+edu/pucmm/eict/Services/ProductService.java
+ edu.pucmm.eict.Services.ProductService
+edu/pucmm/eict/Models/Usuario.java
+ edu.pucmm.eict.Models.Usuario
+edu/pucmm/eict/Models/ProductoCompra.java
+ edu.pucmm.eict.Models.ProductoCompra
+edu/pucmm/eict/Services/FotoProduService.java
+ edu.pucmm.eict.Services.FotoProduService
+edu/pucmm/eict/Models/Producto.java
+ edu.pucmm.eict.Models.Producto
+edu/pucmm/eict/Services/UserService.java
+ edu.pucmm.eict.Services.UserService
 edu/pucmm/eict/Models/ProductoVentas.java
  edu.pucmm.eict.Models.ProductoVentas
  edu.pucmm.eict.Models.ProductoVentasID
+edu/pucmm/eict/Services/VentaService.java
+ edu.pucmm.eict.Services.VentaService
+edu/pucmm/eict/Models/Venta.java
+ edu.pucmm.eict.Models.Venta
+edu/pucmm/eict/Controllers/UserController.java
+ edu.pucmm.eict.Controllers.UserController
+edu/pucmm/eict/Main.java
+ edu.pucmm.eict.Main
+edu/pucmm/eict/Services/ProductoVentaServices.java
+ edu.pucmm.eict.Services.ProductoVentaServices
+edu/pucmm/eict/Services/StoreService.java
+ edu.pucmm.eict.Services.StoreService
+edu/pucmm/eict/Controllers/StoreController.java
+ edu.pucmm.eict.Controllers.StoreController

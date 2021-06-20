@@ -23,7 +23,7 @@ public class Main {
 
         //Prueba de Conexión.
         DBConnection.getInstancia().testConexion();
-        UserService.init();
+//        UserService.init();
         //*********************************************************************
 
          Javalin app = Javalin.create(config -> {
@@ -35,8 +35,12 @@ public class Main {
 
         JavalinRenderer.register(JavalinFreemarker.INSTANCE, ".ftl");
 
+//        app.get("/", ctx -> {
+//            ctx.redirect("/productos/listar");
+//        });
+
         app.get("/", ctx -> {
-            ctx.redirect("/productos/listar");
+            ctx.redirect("/productos/listar?view_page=1");
         });
 
         app.error(404, ctx -> {
@@ -45,7 +49,7 @@ public class Main {
 
         app.exception(Exception.class, (exception, ctx) -> {
             ctx.status(500);
-            ctx.html("<h1>Error no recuperado:"+exception.getMessage()+"</h1>");
+            ctx.html("<h1>Error no recuperado</h1>");
             exception.printStackTrace();
         });
 

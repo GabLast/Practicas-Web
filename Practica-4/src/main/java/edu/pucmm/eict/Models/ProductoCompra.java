@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public class ProductoCompra implements Serializable {
 
 
-    private int id;
+    private long id;
 
     private String nombre;
 
@@ -17,22 +17,25 @@ public class ProductoCompra implements Serializable {
 
     private int cantidad;
 
-    public ProductoCompra(int id, String nombre, BigDecimal precio, int cantidad) {
+    private String descripcion;
+
+    public ProductoCompra(long id, String nombre, BigDecimal precio, int cantidad, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.descripcion = descripcion;
     }
 
     public ProductoCompra() {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -58,5 +61,13 @@ public class ProductoCompra implements Serializable {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

@@ -13,7 +13,7 @@ public class Producto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idproducto;
+    private long idproducto;
     @NotNull
     @Column(unique = true)
     private String nombre;
@@ -38,18 +38,24 @@ public class Producto implements Serializable {
 
     }
 
-    public Producto(int idproducto, String nombre, BigDecimal precio, String descripcion) {
+    public Producto(String nombre, BigDecimal precio, String descripcion) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.descripcion = descripcion;
+    }
+
+    public Producto(long idproducto, String nombre, BigDecimal precio, String descripcion) {
         this.idproducto = idproducto;
         this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
     }
 
-    public int getIdproducto() {
+    public long getIdproducto() {
         return idproducto;
     }
 
-    public void setIdproducto(int idproducto) {
+    public void setIdproducto(long idproducto) {
         this.idproducto = idproducto;
     }
 

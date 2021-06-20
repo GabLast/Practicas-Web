@@ -23,14 +23,14 @@ public class ProductService extends DBEntityManager<Producto> {
 
 //    public Producto getProductByID(int id){
 //        EntityManager em = getEntityManager();
-//        Query query = em.createQuery("select p from Producto p where p.idproducto = :id");
+//        Query query = em.createQuery("select p from Producto p where p.idproducto = :id", Producto.class);
 //        query.setParameter("id", id);
 //        return (Producto) query.getResultList().get(0);
 //    }
 
     public List<Producto> getAvailableProducts(){
         EntityManager em = getEntityManager();
-        Query query = em.createQuery("select p from Producto p where p.borrado = :borrado");
+        Query query = em.createQuery("select p from Producto p where p.borrado = :borrado", Producto.class);
         query.setParameter("borrado", 0);
         List<Producto> lista = query.getResultList();
         return lista;

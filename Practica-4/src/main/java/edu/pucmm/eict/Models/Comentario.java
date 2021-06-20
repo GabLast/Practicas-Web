@@ -10,7 +10,7 @@ import java.util.Date;
 public class Comentario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idcomentario;
+    private long idcomentario;
     @NotNull
     private int descripcion;
     @NotNull
@@ -23,8 +23,7 @@ public class Comentario implements Serializable {
     @ManyToOne
     private Producto producto;
 
-    public Comentario(int idcomentario, int descripcion, int borrado, @NotNull String originalposter) {
-        this.idcomentario = idcomentario;
+    public Comentario(int descripcion, int borrado, @NotNull String originalposter) {
         this.descripcion = descripcion;
         this.borrado = borrado;
         this.originalposter = originalposter;
@@ -33,11 +32,11 @@ public class Comentario implements Serializable {
 
     public Comentario() { }
 
-    public int getIdcomentario() {
+    public long getIdcomentario() {
         return idcomentario;
     }
 
-    public void setIdcomentario(int idcomentario) {
+    public void setIdcomentario(long idcomentario) {
         this.idcomentario = idcomentario;
     }
 
