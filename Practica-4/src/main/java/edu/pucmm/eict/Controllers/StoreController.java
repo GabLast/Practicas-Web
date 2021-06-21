@@ -88,7 +88,7 @@ public class StoreController {
                 });
 
                 get("/", ctx -> {
-                    ctx.redirect("/productos/listar");
+                    ctx.redirect("/productos/listar/view_page/1");
                 });
 
                 //Mostrando los productos disponibles al usuario
@@ -118,7 +118,7 @@ public class StoreController {
                     String count = "Select count (p.idproducto) from Producto p where p.borrado = 0";
                     Query countQuery = em.createQuery(count);
                     Long countResults = (Long) countQuery.getSingleResult();
-                    int totalPags = (int) (Math.ceil(countResults / pageSize));
+                    int totalPags = (int) (Math.ceil(((float)countResults / (float)pageSize)));
                     freeMarkerVars.put("paginas", totalPags);
 
                     ctx.render("/public/templates/ComprarProductos.ftl", freeMarkerVars);
@@ -134,20 +134,29 @@ public class StoreController {
                     Producto producto = ProductService.getInstancia().find(id);
                     freeMarkerVars.put("producto", producto);
                     freeMarkerVars.put("fotos", producto.getListafotos());
-                    freeMarkerVars.put("comentarios", producto.getListacomentarios());
+                    freeMarkerVars.put("comentarios", CommentService.getInstancia().getNonDeletedCommentsByProduct(id));
 
                     ctx.render("/public/templates/VisualizarProducto.ftl", freeMarkerVars);
                 });
 
                 post("/comentar", ctx -> {
-                    long id = ctx.formParam("idProduct", Long.class).get();
+                    long id = ctx.formParam("idproduct", Long.class).get();
                     String originalposter = ctx.formParam("originalposter");
                     String comentario = ctx.formParam("comentario");
 
                     Producto producto = ProductService.getInstancia().find(id);
                     Comentario nuevo = new Comentario(comentario, originalposter, producto);
                     CommentService.getInstancia().insert(nuevo);
-                    ctx.redirect("/listar/view_product/" + id);
+                    ctx.redirect("/productos/listar/view_product/"+id);
+                });
+
+                post("/comentar/borrar", ctx -> {
+                    long id = ctx.formParam("idcomentario", Long.class).get();
+                    Comentario comentario = CommentService.getInstancia().find(id);
+                    comentario.setBorrado(1);
+                    Comentario aux = CommentService.getInstancia().update(comentario);
+                    long idproducto = comentario.getProducto().getIdproducto();
+                    ctx.redirect("/productos/listar/view_product/"+idproducto);
                 });
 
                 //Agregando productos al carrito de compras
@@ -164,7 +173,7 @@ public class StoreController {
                     ProductoCompra pro = new ProductoCompra(producto.getIdproducto(), producto.getNombre(), producto.getPrecio(), cantidad, producto.getDescripcion());
                     micarrito.agregarProducto(pro);
 
-                    ctx.redirect("/productos/listar");
+                    ctx.redirect("/");
                 });
 
                 //Seccion de compras

@@ -18,26 +18,26 @@ edu/pucmm/eict/Models/ProductoCompra.java
  edu.pucmm.eict.Models.ProductoCompra
 edu/pucmm/eict/Services/FotoProduService.java
  edu.pucmm.eict.Services.FotoProduService
-edu/pucmm/eict/Services/ProductService.java
- edu.pucmm.eict.Services.ProductService
+edu/pucmm/eict/Services/StoreService.java
+ edu.pucmm.eict.Services.StoreService
+edu/pucmm/eict/Models/FotoProducto.java
+ edu.pucmm.eict.Models.FotoProducto
 edu/pucmm/eict/Models/Producto.java
  edu.pucmm.eict.Models.Producto
 edu/pucmm/eict/Models/ProductoVentas.java
  edu.pucmm.eict.Models.ProductoVentas
  edu.pucmm.eict.Models.ProductoVentasID
-edu/pucmm/eict/Services/CommentService.java
- edu.pucmm.eict.Services.CommentService
-edu/pucmm/eict/Models/FotoProducto.java
- edu.pucmm.eict.Models.FotoProducto
 edu/pucmm/eict/Services/ProductoVentaServices.java
  edu.pucmm.eict.Services.ProductoVentaServices
+edu/pucmm/eict/Services/ProductService.java
+ edu.pucmm.eict.Services.ProductService
+edu/pucmm/eict/Controllers/StoreController.java
+ edu.pucmm.eict.Controllers.StoreController
 edu/pucmm/eict/Controllers/UserController.java
  edu.pucmm.eict.Controllers.UserController
 edu/pucmm/eict/Models/Comentario.java
  edu.pucmm.eict.Models.Comentario
+edu/pucmm/eict/Services/CommentService.java
+ edu.pucmm.eict.Services.CommentService
 edu/pucmm/eict/Main.java
  edu.pucmm.eict.Main
-edu/pucmm/eict/Services/StoreService.java
- edu.pucmm.eict.Services.StoreService
-edu/pucmm/eict/Controllers/StoreController.java
- edu.pucmm.eict.Controllers.StoreController

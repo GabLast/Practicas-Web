@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="precio" class="form-label">Precio:</label>
-                                        <input type="number" value="${producto.precio}" min="0.000001" step="any"
+                                        <input type="text" value="RD$${producto.precio}"
                                                class="form-control" id="precio" name="precio" placeholder="(RD$)"
                                                readonly>
                                     </div>
@@ -124,25 +124,23 @@
                                         </tr>
                                         </thead>
                                         <tbody class="text-center table-bordered">
+                                        <#if comentarios?has_content>
+                                        <#list comentarios as comment>
                                         <tr>
-                                            <form method="POST" action="">
-                                                <#if comentarios?has_content>
-                                                    <#list comentarios as comment>
-                                                        <td>${comment.originalposter}<input hidden
-                                                                                            value="${comment.idcomentario}"
-                                                                                            name="productIndex"></td>
-                                                        <td>${comment.descripcion}</td>
-                                                        <td>
-                                                            <#if admin == true>
-                                                                <button class="btn btn-sm" type="submit"
-                                                                        style="background-color: darkred; color: whitesmoke">
-                                                                    <span class="material-icons">delete</span></button>
-                                                            </#if>
-                                                        </td>
-                                                    </#list>
+                                            <form method="POST" action="/productos/comentar/borrar">
+                                                <td>${comment.originalposter}<input hidden value="${comment.idcomentario}" name="idcomentario"></td>
+                                                <td>${comment.descripcion}</td>
+                                                <#if admin == true>
+                                                    <td>
+                                                        <button class="btn btn-sm" type="submit" style="background-color: darkred; color: whitesmoke">
+                                                                <span class="material-icons">delete</span>
+                                                        </button>
+                                                    </td>
                                                 </#if>
                                             </form>
                                         </tr>
+                                        </#list>
+                                        </#if>
                                         </tbody>
                                     </table>
                                 </div>

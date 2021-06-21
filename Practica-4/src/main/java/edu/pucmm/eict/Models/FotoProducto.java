@@ -13,9 +13,8 @@ public class FotoProducto implements Serializable {
     @Lob
     private String fotoBase64;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Producto producto;
-
 
     public FotoProducto( String mimeType, String fotoBase64, Producto producto) {
         this.mimeType = mimeType;

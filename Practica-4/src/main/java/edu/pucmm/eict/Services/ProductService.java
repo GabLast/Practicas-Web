@@ -32,7 +32,7 @@ public class ProductService extends DBEntityManager<Producto> {
     public List<Producto> getAvailableProductsPaginated(int page){
         EntityManager em = getEntityManager();
 
-        int rowsPerPage = 1;
+        int rowsPerPage = 10;
         int selectedPage = page;
 
         Query selectQuery = em.createQuery("select p From Producto p where p.borrado = 0");

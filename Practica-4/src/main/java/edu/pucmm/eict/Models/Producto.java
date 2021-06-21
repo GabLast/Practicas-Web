@@ -1,12 +1,14 @@
 package edu.pucmm.eict.Models;
 
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.math.BigDecimal;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Producto implements Serializable {
@@ -29,10 +31,10 @@ public class Producto implements Serializable {
     private List<ProductoVentas> listaventas;
 
     @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
-    private List<FotoProducto> listafotos = new ArrayList<>();
+    private Set<FotoProducto> listafotos;
 
     @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
-    private List<Comentario> listacomentarios = new ArrayList<>();
+    private Set<Comentario> listacomentarios;
 
     public Producto() {
 
@@ -91,19 +93,19 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public List<FotoProducto> getListafotos() {
+    public Set<FotoProducto> getListafotos() {
         return listafotos;
     }
 
-    public void setListafotos(List<FotoProducto> listafotos) {
+    public void setListafotos(Set<FotoProducto> listafotos) {
         this.listafotos = listafotos;
     }
 
-    public List<Comentario> getListacomentarios() {
+    public Set<Comentario> getListacomentarios() {
         return listacomentarios;
     }
 
-    public void setListacomentarios(List<Comentario> listacomentarios) {
+    public void setListacomentarios(Set<Comentario> listacomentarios) {
         this.listacomentarios = listacomentarios;
     }
 }

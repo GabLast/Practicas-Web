@@ -20,7 +20,7 @@ public class Comentario implements Serializable {
     @NotNull
     private String originalposter;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Producto producto;
 
     public Comentario(@NotNull String descripcion, @NotNull String originalposter, Producto producto) {
@@ -40,11 +40,12 @@ public class Comentario implements Serializable {
         this.idcomentario = idcomentario;
     }
 
+    @NotNull
     public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void setDescripcion(@NotNull String descripcion) {
         this.descripcion = descripcion;
     }
 

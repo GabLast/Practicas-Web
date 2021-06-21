@@ -36,8 +36,8 @@
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="precio" class="form-label">Precio:</label>
-                                        <input type="number" min="1" value="1" class="form-control" id="precio"
-                                               name="precio" placeholder="(RD$)" required>
+                                        <input type="number" min="0.00000001" step="any" value="1" class="form-control" id="precio"
+                                               name="precio" placeholder="0.01" required>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="descripcion" class="form-label">Descripci&oacuten:</label>

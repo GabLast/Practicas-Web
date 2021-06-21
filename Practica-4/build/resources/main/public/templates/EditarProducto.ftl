@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="precio" class="form-label">Precio:</label>
-                                        <input type="number" value="${producto.precio}" min="0.000001" step="any" class="form-control" id="precio" name="precio" placeholder="(RD$)" required>
+                                        <input type="number" min="0.000001" value="${producto.precio?string("0")}" step="any" class="form-control" id="precio" name="precio" placeholder="($RD)" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="descripcion" class="form-label">Descripci&oacuten:</label>
@@ -42,7 +42,6 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <#--<input hidden value ="${producto.id}" name="id">-->
                                     <button type="submit" class="btn btn-primary btn-dark">Actualizar</button>
                                 </div>
                             </div>

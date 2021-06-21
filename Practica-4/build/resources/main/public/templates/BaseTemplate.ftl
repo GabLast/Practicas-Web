@@ -29,7 +29,7 @@
                 </#if>
                 <#if admin == true>
                     <ul class="navbar-nav ml-auto text-right">
-                        <li class="nav-item"><a class="nav-link text-light" href="/productos/listar?view_page=1">Comprar</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="/productos/listar/view_page/1">Comprar</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/historial/ventas">Ventas Realizadas</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/gestion/productos">Administrar Productos</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/productos/comprar">Carrito (${cantidad})</a></li>
@@ -37,7 +37,7 @@
                     </ul>
                 <#else>
                     <ul class="navbar-nav ml-auto text-right">
-                        <li class="nav-item"><a class="nav-link text-light" href="/productos/listar?view_page=1">Comprar</a></li>
+                        <li class="nav-item"><a class="nav-link text-light" href="/productos/listar/view_page/1">Comprar</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="/productos/comprar">Carrito (${cantidad})</a></li>
                         <#if logged == true>
                             <li class="nav-item"><a class="nav-link text-light" href="/logout">Log Out</a></li>
