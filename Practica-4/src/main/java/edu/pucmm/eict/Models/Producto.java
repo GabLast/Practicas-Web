@@ -28,11 +28,11 @@ public class Producto implements Serializable {
     @OneToMany(mappedBy = "venta")
     private List<ProductoVentas> listaventas;
 
-    @OneToMany(mappedBy = "producto")
-    private List<FotoProducto> listafotos;
+    @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
+    private List<FotoProducto> listafotos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "producto")
-    private List<Comentario> comentarios;
+    @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
+    private List<Comentario> listacomentarios = new ArrayList<>();
 
     public Producto() {
 
@@ -91,14 +91,6 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public List<ProductoVentas> getListaventas() {
-        return listaventas;
-    }
-
-    public void setListaventas(List<ProductoVentas> listaventas) {
-        this.listaventas = listaventas;
-    }
-
     public List<FotoProducto> getListafotos() {
         return listafotos;
     }
@@ -107,11 +99,11 @@ public class Producto implements Serializable {
         this.listafotos = listafotos;
     }
 
-    public List<Comentario> getComentarios() {
-        return comentarios;
+    public List<Comentario> getListacomentarios() {
+        return listacomentarios;
     }
 
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
+    public void setListacomentarios(List<Comentario> listacomentarios) {
+        this.listacomentarios = listacomentarios;
     }
 }

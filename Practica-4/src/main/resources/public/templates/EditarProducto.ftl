@@ -1,6 +1,8 @@
 <#include "BaseTemplate.ftl">
 <#macro page_head>
-    <title>${title}</title>
+    <#if title?has_content>
+        <title>${title}</title>
+    </#if>
 </#macro>
 
 <#macro page_body>
@@ -67,7 +69,7 @@
         <body>
         <div class="central-body ">
             <h5>Usted no tiene permisos para acceder a este recurso</h5>
-            <a href="/" class="btn btn-go-home btn-dark"><button>VOLVER AL INICIO</button></a>
+            <a href="/"><button class="btn btn-go-home btn-dark">VOLVER AL INICIO</button></a>
         </div>
         </body>
     </#if>

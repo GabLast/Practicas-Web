@@ -1,7 +1,5 @@
 package edu.pucmm.eict.Models;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -11,19 +9,20 @@ public class FotoProducto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idfotoproducto;
-    @NotNull
     private String mimeType;
-    @Lob @NotNull
+    @Lob
     private String fotoBase64;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Producto producto;
 
-    public FotoProducto(@NotNull String mimeType, @NotNull String fotoBase64, Producto producto) {
+
+    public FotoProducto( String mimeType, String fotoBase64, Producto producto) {
         this.mimeType = mimeType;
         this.fotoBase64 = fotoBase64;
         this.producto = producto;
     }
+
 
     public FotoProducto() {
 
@@ -37,21 +36,19 @@ public class FotoProducto implements Serializable {
         this.idfotoproducto = idfotoproducto;
     }
 
-    @NotNull
     public String getMimeType() {
         return mimeType;
     }
 
-    public void setMimeType(@NotNull String mimeType) {
+    public void setMimeType(String mimeType) {
         this.mimeType = mimeType;
     }
 
-    @NotNull
     public String getFotoBase64() {
         return fotoBase64;
     }
 
-    public void setFotoBase64(@NotNull String fotoBase64) {
+    public void setFotoBase64(String fotoBase64) {
         this.fotoBase64 = fotoBase64;
     }
 

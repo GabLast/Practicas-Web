@@ -35,13 +35,13 @@ public class Main {
 
         JavalinRenderer.register(JavalinFreemarker.INSTANCE, ".ftl");
 
-//        app.get("/", ctx -> {
-//            ctx.redirect("/productos/listar");
-//        });
-
         app.get("/", ctx -> {
-            ctx.redirect("/productos/listar?view_page=1");
+            ctx.redirect("/productos/listar");
         });
+
+//        app.get("/", ctx -> {
+//            ctx.redirect("/productos/listar/view_page/1");
+//        });
 
         app.error(404, ctx -> {
             ctx.redirect("/404.html");

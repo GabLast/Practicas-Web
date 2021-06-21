@@ -1,6 +1,8 @@
 <#include "BaseTemplate.ftl">
 <#macro page_head>
-    <title>${title}</title>
+    <#if title?has_content>
+        <title>${title}</title>
+    </#if>
 </#macro>
 
 <#macro page_body>
@@ -43,14 +45,21 @@
                                         <td>
                                             <div class="container">
                                                 <div class="row justify-content-evenly">
-                                                    <div class="col-6">
-                                                        <a href="/gestion/productos/editar/${p.idproducto}">
+                                                    <div class="col-4">
+                                                        <a href="/productos/listar/view_product/${p.idproducto}">
                                                             <button class="btn btn-sm"
                                                                     style="background-color: dodgerblue; color: whitesmoke">
+                                                                <span class="material-icons">pageview</span></button>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <a href="/gestion/productos/editar/${p.idproducto}">
+                                                            <button class="btn btn-sm"
+                                                                    style="background-color: #31d2f2; color: whitesmoke">
                                                                 <span class="material-icons">edit</span></button>
                                                         </a>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-4">
                                                         <form method="post" action="/gestion/productos/eliminar">
                                                             <input hidden value="${p.idproducto}" name="productID">
                                                             <button class="btn btn-sm btn-danger" type="submit"
@@ -86,9 +95,7 @@
         <body>
         <div class="central-body">
             <h5>Usted no tiene permisos para acceder a este recurso</h5>
-            <a href="/">
-                <button class="btn btn-dark btn-go-home">VOLVER AL INICIO</button>
-            </a>
+            <a href="/"><button class="btn btn-go-home btn-dark">VOLVER AL INICIO</button></a>
         </div>
         </body>
     </#if>

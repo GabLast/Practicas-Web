@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/Navigation-Clean.css">
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="container" style="height: max-content">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: #080808;color:rgb(255, 255, 255)">
+                            <h5 class="modal-title">Producto</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="${producto.nombre}" placeholder="Producto" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="precio" class="form-label">Precio:</label>
+                                <input type="number" value="${producto.precio}" min="0.000001" step="any" class="form-control" id="precio" name="precio" placeholder="(RD$)" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripci&oacuten:</label>
+                                <input type="text" class="form-control" id="descripcion" name="descripcion" value="${producto.descripcion}" placeholder="Detalles" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="container" style="height: max-content">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: #080808;color:rgb(255, 255, 255)">
+                            <h5 class="modal-title">Im&aacutegenes:</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="..." class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="..." class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="..." class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <br>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="container" style="height: max-content">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: #080808;color:rgb(255, 255, 255)">
+                            <h5 class="modal-title">Escribir un comentario:</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="">
+                                <textarea name="comentario" style="width: 100%; height: 100%;" maxlength="255" placeholder="Escriba un comentario"></textarea>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-dark">Publicar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="container">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background: #080808;color:rgb(255, 255, 255)">
+                                <h5 class="modal-title">Comentarios:</h5>
+                            </div>
+                            <div class="modal-body" id="commentbody">
+                                <div class="table-responsive" style="height: 300px">
+                                    <table class="table table-striped table-bordered">
+                                        <thead class="thead-dark text-center">
+                                            <tr>
+                                                <th scope="col">Cliente</th>
+                                                <th scope="col">Comentario</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center table-bordered">
+                                            <tr>
+                                                <form method="POST" action="">
+                                                    <td>${p.nombre}<input hidden value="${p?index}" name="productIndex"></td>
+                                                    <td>RD$${p.precio}</td>
+                                                    <td>
+                                                        <button class="btn btn-sm" type="submit" style="background-color: darkred; color: whitesmoke"><span class="material-icons">delete</span></button>
+                                                    </td>
+                                                </form>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

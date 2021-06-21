@@ -2,10 +2,12 @@ package edu.pucmm.eict.Controllers;
 
 //import edu.pucmm.eict.Database.Fake;
 
+import edu.pucmm.eict.Database.DBEntityManager;
 import edu.pucmm.eict.Models.*;
 import edu.pucmm.eict.Services.*;
 import io.javalin.Javalin;
 import org.jasypt.util.text.StrongTextEncryptor;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -77,6 +79,14 @@ public class StoreController {
 
             path("/productos", () -> {
 
+                before("/comentar", ctx -> {
+                    Usuario user = ctx.sessionAttribute("usuario");
+                    if (user == null) {
+                        requestedURL = ctx.req.getRequestURI();
+                        ctx.redirect("/Login.html");
+                    }
+                });
+
                 get("/", ctx -> {
                     ctx.redirect("/productos/listar");
                 });
@@ -94,7 +104,7 @@ public class StoreController {
                     ctx.render("/public/templates/ComprarProductos.ftl", freeMarkerVars);
                 });
 
-                get("/listar?view_page=:page", ctx -> {
+                get("/listar/view_page/:page", ctx -> {
                     int page = ctx.pathParam("page", Integer.class).get();
                     Map<String, Object> freeMarkerVars = new HashMap<>();
                     freeMarkerVars.put("title", "Comprar Productos");
@@ -103,20 +113,41 @@ public class StoreController {
                     verificarLogin(usuario, freeMarkerVars);
                     freeMarkerVars.put("productos", ProductService.getInstancia().getAvailableProductsPaginated(page));
 
-                    int pageSize = 1;
+                    int pageSize = 10;
                     EntityManager em = ProductService.getInstancia().getEntityManager();
                     String count = "Select count (p.idproducto) from Producto p where p.borrado = 0";
                     Query countQuery = em.createQuery(count);
                     Long countResults = (Long) countQuery.getSingleResult();
-                    int PageTotalNumber = (int) (Math.ceil(countResults / pageSize));
+                    int totalPags = (int) (Math.ceil(countResults / pageSize));
+                    freeMarkerVars.put("paginas", totalPags);
 
-                    freeMarkerVars.put("cantPaginas", PageTotalNumber);
-                    System.out.println("Paginas: " + PageTotalNumber);
                     ctx.render("/public/templates/ComprarProductos.ftl", freeMarkerVars);
                 });
 
-                get("/listar/view?:productid", ctx -> {
-                    ctx.result("nice");
+                get("/listar/view_product/:id", ctx -> {
+                    Map<String, Object> freeMarkerVars = new HashMap<>();
+                    freeMarkerVars.put("title", "Visualizar Producto");
+                    freeMarkerVars.put("cantidad", micarrito.contarProductos());
+                    verificarLogin(usuario, freeMarkerVars);
+
+                    long id = Long.parseLong(ctx.pathParam("id"));
+                    Producto producto = ProductService.getInstancia().find(id);
+                    freeMarkerVars.put("producto", producto);
+                    freeMarkerVars.put("fotos", producto.getListafotos());
+                    freeMarkerVars.put("comentarios", producto.getListacomentarios());
+
+                    ctx.render("/public/templates/VisualizarProducto.ftl", freeMarkerVars);
+                });
+
+                post("/comentar", ctx -> {
+                    long id = ctx.formParam("idProduct", Long.class).get();
+                    String originalposter = ctx.formParam("originalposter");
+                    String comentario = ctx.formParam("comentario");
+
+                    Producto producto = ProductService.getInstancia().find(id);
+                    Comentario nuevo = new Comentario(comentario, originalposter, producto);
+                    CommentService.getInstancia().insert(nuevo);
+                    ctx.redirect("/listar/view_product/" + id);
                 });
 
                 //Agregando productos al carrito de compras
@@ -249,14 +280,15 @@ public class StoreController {
                     String descripcion = ctx.formParam("descripcion");
 
                     Producto nuevo = new Producto(nombre, precio, descripcion);
-                    ProductService.getInstancia().insert(nuevo);
+                    Producto aux = ProductService.getInstancia().insert(nuevo);
+
                     ctx.uploadedFiles("fotos").forEach(uploadedFile -> {
-                        try{
+                        try {
                             byte[] bytes = uploadedFile.getContent().readAllBytes();
-                            String encondedString = Base64.getEncoder().encodeToString(bytes);
-                            FotoProducto foto = new FotoProducto(uploadedFile.getContentType(), encondedString, nuevo);
-                            FotoProduService.getInstancia().insert(foto);
-                        } catch (IOException e){
+                            String encodedString = Base64.getEncoder().encodeToString(bytes);
+                            FotoProducto foto = new FotoProducto(uploadedFile.getContentType(), encodedString, aux);
+                            FotoProduService.getInstance().insert(foto);
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
                     });

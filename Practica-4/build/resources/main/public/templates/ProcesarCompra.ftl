@@ -1,6 +1,8 @@
 <#include "BaseTemplate.ftl">
 <#macro page_head>
-<title>${title}</title>
+    <#if title?has_content>
+        <title>${title}</title>
+    </#if>
 </#macro>
 
 <#macro page_body>

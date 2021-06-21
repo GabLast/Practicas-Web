@@ -12,7 +12,7 @@ public class Comentario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idcomentario;
     @NotNull
-    private int descripcion;
+    private String descripcion;
     @NotNull
     private Date fechaCreacion;
     @NotNull @Column(columnDefinition = "int default 0")
@@ -20,13 +20,13 @@ public class Comentario implements Serializable {
     @NotNull
     private String originalposter;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Producto producto;
 
-    public Comentario(int descripcion, int borrado, @NotNull String originalposter) {
+    public Comentario(@NotNull String descripcion, @NotNull String originalposter, Producto producto) {
         this.descripcion = descripcion;
-        this.borrado = borrado;
         this.originalposter = originalposter;
+        this.producto = producto;
         this.fechaCreacion = new Date();
     }
 
@@ -40,11 +40,11 @@ public class Comentario implements Serializable {
         this.idcomentario = idcomentario;
     }
 
-    public int getDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(int descripcion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
@@ -72,5 +72,13 @@ public class Comentario implements Serializable {
 
     public void setOriginalposter(@NotNull String originalposter) {
         this.originalposter = originalposter;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 }

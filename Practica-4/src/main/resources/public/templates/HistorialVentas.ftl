@@ -1,6 +1,8 @@
 <#include "BaseTemplate.ftl">
 <#macro page_head>
-    <title>${title}</title>
+    <#if title?has_content>
+        <title>${title}</title>
+    </#if>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/404-NOT-FOUND-animated.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
@@ -61,8 +63,8 @@
                             </div>
                         </#list>
                     <#else>
-                        <h5>No se ha podido obtener las ventas. Por lo cual, no hay datos.</h5>
-                        <a href="/" class="btn btn-go-home btn-dark"><button>VOLVER AL INICIO</button></a>
+                        <h5>No se ha podido obtener las ventas. No hay ventas realizadas, por lo cual, no hay datos.</h5>
+                        <a href="/"><button class="btn btn-go-home btn-dark">VOLVER AL INICIO</button></a>
                     </#if>
                 </div>
             </div>
@@ -83,7 +85,7 @@
     <body>
     <div class="central-body ">
         <h5>Usted no tiene permisos para acceder a este recurso</h5>
-        <a href="/" class="btn btn-go-home btn-dark"><button>VOLVER AL INICIO</button></a>
+        <a href="/"><button class="btn btn-go-home btn-dark">VOLVER AL INICIO</button></a>
     </div>
     </body>
     </#if>
