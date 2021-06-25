@@ -29,11 +29,14 @@ public class Main {
 
         if(modoConexion.isEmpty()) {
             DBConfig.startDb();
+            //Prueba de Conexión.
+            DBConnection.getInstancia().testConexion();
         }
 
-        //Prueba de Conexión.
-        DBConnection.getInstancia().testConexion();
-        UserService.init();
+        if(UserService.getInstancia().findAll().isEmpty())
+        {
+            UserService.init();
+        }
         //*********************************************************************
 
          Javalin app = Javalin.create(config -> {
