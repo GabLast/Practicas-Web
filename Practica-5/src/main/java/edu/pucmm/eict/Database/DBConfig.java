@@ -11,7 +11,7 @@ public class DBConfig {
 
     public static void startDb()  {
         try {
-            server = Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers", "-ifNotExists").start();
+            server = Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers", "-tcpDaemon", "-ifNotExists").start();
         }catch (SQLException ex){
             ex.printStackTrace();
         }

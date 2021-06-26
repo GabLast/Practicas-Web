@@ -15,10 +15,10 @@ public class DBEntityManager<T> {
 
 
     public DBEntityManager(Class<T> claseEntidad) {
-        if (emf == null) {
+        if(emf == null) {
             if(Main.getModoConexion().equalsIgnoreCase("Heroku")){
                 emf = getConfiguracionBaseDatosHeroku();
-            }else {
+            } else {
                 emf = Persistence.createEntityManagerFactory("CarritoCompras");
             }
         }
