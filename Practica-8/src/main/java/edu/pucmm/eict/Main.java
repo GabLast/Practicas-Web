@@ -55,10 +55,10 @@ public class Main {
         //Eliminar Estudiante
         HttpResponse deleteEstudiante = Unirest.delete("http://localhost:7000/api/estudiante/" + estu.getMatricula())
                 .header("accept", "application/json")
-                .asObject(Estudiante.class);
+                .asObject(Boolean.class);
         System.out.println("\nBorrar Estudiante");
         System.out.println("HTTP Status: " + deleteEstudiante.getStatus());
-//        System.out.println("HTTP Message: " + deleteEstudiante.getBody().toString());
+        System.out.println("HTTP Message: " + deleteEstudiante.getBody().toString());
     }
 
     static class Estudiante {
