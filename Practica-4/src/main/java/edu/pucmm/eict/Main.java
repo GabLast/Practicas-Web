@@ -23,7 +23,7 @@ public class Main {
 
         //Prueba de Conexión.
         DBConnection.getInstancia().testConexion();
-        UserService.init();
+//        UserService.init();
         //*********************************************************************
 
          Javalin app = Javalin.create(config -> {
